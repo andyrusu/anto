@@ -70,7 +70,7 @@ class Columns extends Component
     renderAll()
     {
         let from = parseInt(this.props.from);
-        let to = (this.props.to === "") ? from + 1 : parseInt(this.props.to);
+        let to = (this.props.to === "") ? from + 1 : parseInt(this.props.to) + 1;
         let nums = _.range(from, to);
 
         return (
