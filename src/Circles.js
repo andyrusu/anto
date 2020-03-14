@@ -125,10 +125,6 @@ class Circles extends React.Component
                                     return <Circle key={point.x + "x" + point.y} cx={point.x} cy={point.y} r="30" />
                                 })}
                                 {this.renderCalculations(coords)}
-                                {/* <Circle cx="50" cy="50" r="30" />
-                                <Text x="30" y="55">
-                                    <Calculation left="3" right="4" symbol="x"/>
-                                </Text> */}
                             </svg>
                         </div>
                     </div>
