@@ -28,12 +28,15 @@ function TabLink({ to, activeOnlyWhenExact, children }) {
 
 class App extends React.Component
 {
+  defaultState = { from: "", to: "" };
+
   constructor(props)
   {
     super(props);
-    this.state = { from: "", to: "" };
+    this.state = this.defaultState;
 
     this.handleNumberChange = this.handleNumberChange.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleNumberChange(event)
@@ -53,6 +56,11 @@ class App extends React.Component
     }
   }
 
+  handleReset(event)
+  {
+    this.setState(this.defaultState);
+  }
+
   render()
   {
     return (
@@ -67,7 +75,7 @@ class App extends React.Component
           </div>
           <Switch>
             <Route exact path="/">
-              <Configuration from={this.state.from} to={this.state.to} handleChange={this.handleNumberChange}/>
+              <Configuration from={this.state.from} to={this.state.to} handleChange={this.handleNumberChange} handleReset={this.handleReset}/>
             </Route>
             <Route path="/columns">
               <Columns from={this.state.from} to={this.state.to} />
