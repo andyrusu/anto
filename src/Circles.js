@@ -1,11 +1,6 @@
 import React from 'react';
 import * as _ from "underscore";
 
-function Calculation(props)
-{
-    return props.left + " " + props.symbol + " " + props.right;;
-}
-
 function Text(props)
 {
     return (
