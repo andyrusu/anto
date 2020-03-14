@@ -81,9 +81,8 @@ class App extends React.Component
               <Columns from={this.state.from} to={this.state.to} />
             </Route>
             <Route path="/circles">
-              <Circles number={this.state.number} />
+              <Circles number={this.state.from} />
             </Route>
-  
           </Switch>
         </div>
       </Router>

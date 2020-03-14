@@ -26,8 +26,8 @@ class Configuration extends React.Component {
                         <p className={!isToEmpty ? "help is-success" : "help"}>{isToEmpty ? "Numarul asta NU este obligatoriu" : "S-a salvat numarul: " + to}</p>
                     </div>
 
-                    <div class="control">
-                        <button class="button is-primary" onClick={this.props.handleReset}>Reseteaza</button>
+                    <div className="control">
+                        <button className="button is-primary" onClick={this.props.handleReset}>Reseteaza</button>
                     </div>
                 </div>
             </div>
