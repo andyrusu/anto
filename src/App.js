@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,11 +7,11 @@ import {
   Link,
   useRouteMatch
 } from "react-router-dom";
+import Configuration from './Configuration';
 import Columns from './Columns';
 import Circles from './Circles';
 
-function TabLink({ to, activeOnlyWhenExact, children})
-{
+function TabLink({ to, activeOnlyWhenExact, children }) {
   let match = useRouteMatch({
     path: to,
     exact: activeOnlyWhenExact
@@ -25,27 +26,61 @@ function TabLink({ to, activeOnlyWhenExact, children})
   );
 }
 
-function App() {
-  return (
-    <Router>
-      <div className="container">
-        <div class="tabs is-centered">
-          <ul>
-            <TabLink to="/" activeOnlyWhenExact={true}>Calcule pe coloane</TabLink>
-            <TabLink to="/circles">Calcule in cercuri</TabLink>
-          </ul>
+class App extends React.Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = { from: "", to: "" };
+
+    this.handleNumberChange = this.handleNumberChange.bind(this);
+  }
+
+  handleNumberChange(event)
+  {
+    let n = event.target.value;
+
+    if (n > 0 && n < 10)
+    {
+      if (event.target.getAttribute("name")==="from")
+      {
+        this.setState({from: n});
+      }
+      else
+      {
+        this.setState({to: n});
+      }
+    }
+  }
+
+  render()
+  {
+    return (
+      <Router>
+        <div className="container">
+          <div className="tabs is-centered">
+            <ul>
+              <TabLink to="/" activeOnlyWhenExact={true}>Configurare</TabLink>
+              <TabLink to="/columns" activeOnlyWhenExact={true}>Calcule pe coloane</TabLink>
+              <TabLink to="/circles">Calcule in cercuri</TabLink>
+            </ul>
+          </div>
+          <Switch>
+            <Route exact path="/">
+              <Configuration from={this.state.from} to={this.state.to} handleChange={this.handleNumberChange}/>
+            </Route>
+            <Route path="/columns">
+              <Columns from={this.state.from} to={this.state.to} />
+            </Route>
+            <Route path="/circles">
+              <Circles number={this.state.number} />
+            </Route>
+  
+          </Switch>
         </div>
-        <Switch>
-          <Route path="/circles">
-            <Circles />
-          </Route>
-          <Route path="/">
-            <Columns />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 
 export default App;
